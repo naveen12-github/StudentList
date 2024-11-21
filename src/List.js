@@ -7,7 +7,7 @@ function List({ favoriteList, addToFavorites }) {
       <>
          {/* Navbar */}
          <div className="bg-[#EB7071] p-4 flex justify-between">
-            <h1 className="text-2xl underline text-white decoration-black underline-offset-4 border">
+            <h1 className="text-2xl underline text-white decoration-black underline-offset-4 ">
                List of Students
             </h1>
             <Link to="/favourite-students">
