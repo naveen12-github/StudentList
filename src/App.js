@@ -1,25 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { useState } from "react";
+import List from "./List";
+import FavouriteStudents from "./FavouriteStudents";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+   const [favoriteList, setFavoriteList] = useState([]);
+
+   // Add a student to the favorite list
+   const addToFavorites = (student) => {
+      setFavoriteList((prev) => [...prev, student]);
+   };
+
+   // Remove a student from the favorite list
+   const removeFromFavorites = (student) => {
+      setFavoriteList((prev) => prev.filter((fav) => fav !== student));
+   };
+
+   return (
+      <Router>
+         <Routes>
+            <Route
+               path="/"
+               element={
+                  <List
+                     favoriteList={favoriteList}
+                     addToFavorites={addToFavorites}
+                  />
+               }
+            />
+            <Route
+               path="/favourite-students"
+               element={
+                  <FavouriteStudents
+                     favoriteList={favoriteList}
+                     removeFromFavorites={removeFromFavorites}
+                  />
+               }
+            />
+         </Routes>
+      </Router>
+   );
 }
 
 export default App;
